@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Dashboard from './pages/Dashboard';
-import ListDetail from './pages/ListDetail';
-import TripPlanner from './pages/TripPlanner';
-import Search from './pages/Search';
-import Settings from './pages/Settings';
-import Watchlist from './pages/Watchlist';
-import BottomNav from './components/BottomNav';
+import Dashboard from '../pages/Dashboard';
+import ListDetail from '../pages/ListDetail';
+import TripPlanner from '../pages/TripPlanner';
+import Search from '../pages/Search';
+import Settings from '../pages/Settings';
+import Watchlist from '../pages/Watchlist';
+import BottomNav from '../components/BottomNav';
 
 
 function App() {
