@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { ShoppingListProvider } from './hooks/useShoppingList';
-import { StoreProvider } from './hooks/useStores';
-import { WatchlistProvider } from './hooks/useWatchlist';
-import { ProductDataProvider } from './hooks/useProductData';
 import Dashboard from './pages/Dashboard';
 import ListDetail from './pages/ListDetail';
 import TripPlanner from './pages/TripPlanner';
@@ -32,30 +28,22 @@ function App() {
 
   return (
     <HashRouter>
-      <StoreProvider>
-        <ShoppingListProvider>
-          <WatchlistProvider>
-            <ProductDataProvider>
-              <div className="min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-sans antialiased">
-                <div className="container mx-auto max-w-lg h-screen flex flex-col">
-                  <main className="flex-grow overflow-y-auto pb-20">
-                    <Routes>
-                      <Route path="/" element={<Navigate to="/dashboard" />} />
-                      <Route path="/dashboard" element={<Dashboard />} />
-                      <Route path="/list/:listId" element={<ListDetail />} />
-                      <Route path="/list/:listId/planner" element={<TripPlanner />} />
-                      <Route path="/search" element={<Search />} />
-                      <Route path="/watchlist" element={<Watchlist />} />
-                      <Route path="/settings" element={<Settings theme={theme} toggleTheme={toggleTheme} />} />
-                    </Routes>
-                  </main>
-                  <BottomNav />
-                </div>
-              </div>
-            </ProductDataProvider>
-          </WatchlistProvider>
-        </ShoppingListProvider>
-      </StoreProvider>
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-sans antialiased">
+        <div className="container mx-auto max-w-lg h-screen flex flex-col">
+          <main className="flex-grow overflow-y-auto pb-20">
+            <Routes>
+              <Route path="/" element={<Navigate to="/dashboard" />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/list/:listId" element={<ListDetail />} />
+              <Route path="/list/:listId/planner" element={<TripPlanner />} />
+              <Route path="/search" element={<Search />} />
+              <Route path="/watchlist" element={<Watchlist />} />
+              <Route path="/settings" element={<Settings theme={theme} toggleTheme={toggleTheme} />} />
+            </Routes>
+          </main>
+          <BottomNav />
+        </div>
+      </div>
     </HashRouter>
   );
 }
