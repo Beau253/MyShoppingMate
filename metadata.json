@@ -1,0 +1,7 @@
+{
+  "name": "My Shopping Mate",
+  "description": "An intelligent shopping assistant that helps you save time and money by finding the best prices for your shopping list across your favorite stores and optimizing your entire shopping trip.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
