@@ -1,0 +1,47 @@
+name: my_shopping_mate
+description: A new Flutter project.
+
+# Prevent accidental publishing to pub.dev.
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.0 <3.0.0'
+
+# Dependencies specify other packages that your package needs in order to work.
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State Management
+  flutter_bloc: ^8.1.1
+  equatable: ^2.0.5
+
+  # Networking
+  http: ^0.13.5
+
+  # Secure Storage
+  flutter_secure_storage: ^8.0.0
+  
+  # Local Storage for Preferences
+  shared_preferences: ^2.0.15
+
+  # UI & Theming
+  google_fonts: ^3.0.1
+  flutter_svg: ^1.1.6
+  
+  # Utility
+  intl: ^0.17.0
+  uuid: ^3.0.7 # Added for fake repositories
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+# The following section is specific to Flutter packages.
+flutter:
+  uses-material-design: true
