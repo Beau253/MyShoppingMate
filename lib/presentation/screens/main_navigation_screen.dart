@@ -1,20 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_shopping_mate/bloc/profile/profile_bloc.dart';
 import 'package:my_shopping_mate/bloc/shopping_list/shopping_list_bloc.dart';
+import 'package:my_shopping_mate/data/repositories/user_repository.dart';
 import 'package:my_shopping_mate/data/repositories/shopping_list_repository.dart';
 import 'package:my_shopping_mate/presentation/screens/dashboard/dashboard_screen.dart';
-// ... other screen imports
+import 'package:my_shopping_mate/presentation/screens/lists/lists_overview_screen.dart';
+import 'package:my_shopping_mate/presentation/screens/recipes/recipes_screen.dart';
+import 'package:my_shopping_mate/presentation/screens/search/search_screen.dart';
+import 'package:my_shopping_mate/presentation/screens/settings/settings_screen.dart';
 
 class MainNavigationScreen extends StatelessWidget {
   const MainNavigationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Provide the ShoppingListBloc to all screens within the main navigation.
-    return BlocProvider(
-      create: (context) => ShoppingListBloc(
-        shoppingListRepository: FakeShoppingListRepository(),
-      )..add(ShoppingListsLoaded()), // Load the lists as soon as the user logs in.
+    // Use MultiBlocProvider to provide all necessary BLoCs to the widget tree
+    // that starts from this screen. This is cleaner than nesting providers.
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => ShoppingListBloc(
+            shoppingListRepository: FakeShoppingListRepository(),
+          )..add(ShoppingListsLoaded()), // Load lists when the user logs in.
+        ),
+        BlocProvider(
+          create: (context) => ProfileBloc(userRepository: FakeUserRepository())
+            ..add(ProfileLoaded()), // Load user profile data immediately.
+        ),
+      ],
       child: const MainNavigationView(),
     );
   }

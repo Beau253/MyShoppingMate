@@ -86,7 +86,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       // After saving, emit a new success state with the updated user data.
       // We can optimistically update the user object before re-fetching.
       final updatedUser = state.user!.copyWith(name: event.name);
-      emit(state.copyWith(status: ProfileStatus.success, user: updatedUser));
+      emit(state.copyWith(status: ProfileStatus.success, user: updatedUser,));
     } catch (_) {
       // If saving fails, revert to the previous successful state.
       // The user object is already correct from the previous success state.

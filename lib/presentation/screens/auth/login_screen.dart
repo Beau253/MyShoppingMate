@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_shopping_mate/presentation/widgets/atoms/TextInputField.dart';
 import 'package:my_shopping_mate/presentation/widgets/atoms/PrimaryButton.dart';
+import 'package:my_shopping_mate/presentation/screens/main_navigation_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -78,13 +79,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 Text(
                   'Welcome Back',
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headline1,
+                  style: Theme.of(context).textTheme.displayLarge,
                 ),
                 const SizedBox(height: 8),
                 Text(
                   'Sign in to your account',
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyText2,
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 48),
 
@@ -151,7 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                         Text(
                             "Don't have an account?",
-                            style: Theme.of(context).textTheme.bodyText2,
+                            style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         TextButton(
                             onPressed: () {

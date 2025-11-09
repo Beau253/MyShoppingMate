@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_shopping_mate/bloc/profile/profile_bloc.dart';
 import 'package:my_shopping_mate/bloc/shopping_list/shopping_list_bloc.dart';
+import 'package:my_shopping_mate/data/models/user_model.dart';
 import 'package:my_shopping_mate/presentation/screens/lists/list_detail_screen.dart';
 import 'package:my_shopping_mate/presentation/widgets/molecules/shopping_list_card.dart';
 
@@ -16,19 +18,6 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const DashboardView();
-  }
-}
-
-class DashboardView extends StatelessWidget {
-  const DashboardView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    // We access the callbacks via context.findAncestorWidgetOfExactType()
-    // This is slightly more complex but keeps the view pure.
-    final parent = context.findAncestorWidgetOfExactType<DashboardScreen>()!;
-    
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -39,9 +28,9 @@ class DashboardView extends StatelessWidget {
               children: [
                 _buildGreeting(context),
                 const SizedBox(height: 24),
-                _buildSearchBar(context, onSearchBarTapped: parent.onSearchBarTapped),
+                _buildSearchBar(context, onSearchBarTapped: onSearchBarTapped),
                 const SizedBox(height: 32),
-                _buildActiveListsSection(context, onSeeAllListsTapped: parent.onSeeAllListsTapped),
+                _buildActiveListsSection(context, onSeeAllListsTapped: onSeeAllListsTapped),
               ],
             ),
           ),
@@ -51,9 +40,15 @@ class DashboardView extends StatelessWidget {
   }
 
   Widget _buildGreeting(BuildContext context) {
-    return Text(
-      'Good morning, User!',
-      style: Theme.of(context).textTheme.headline1,
+    // Greet the user by name by listening to the ProfileBloc
+    return BlocBuilder<ProfileBloc, ProfileState>(
+      builder: (context, state) {
+        final name = state.user?.name.split(' ').first ?? 'User';
+        return Text(
+          'Good morning, $name!',
+          style: Theme.of(context).textTheme.displayLarge,
+        );
+      },
     );
   }
 
@@ -66,9 +61,9 @@ class DashboardView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
           child: Row(
             children: [
-              Icon(Icons.search, color: Theme.of(context).textTheme.bodyText2?.color),
+              Icon(Icons.search, color: Theme.of(context).textTheme.bodyMedium?.color),
               const SizedBox(width: 12),
-              Text('Search for products...', style: Theme.of(context).textTheme.bodyText2),
+              Text('Search for products...', style: Theme.of(context).textTheme.bodyMedium),
             ],
           ),
         ),
@@ -83,7 +78,7 @@ class DashboardView extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Active Lists', style: Theme.of(context).textTheme.headline2),
+            Text('Active Lists', style: Theme.of(context).textTheme.headlineMedium),
             TextButton(
               onPressed: onSeeAllListsTapped,
               child: const Text('See All'),
@@ -140,13 +135,13 @@ class DashboardView extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             'No Active Lists',
-            style: Theme.of(context).textTheme.headline2,
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
           const SizedBox(height: 8),
           Text(
             'Tap the "Lists" tab below to create your first shopping list.',
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyText2,
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
         ],
       ),

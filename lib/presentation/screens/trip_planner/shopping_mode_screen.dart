@@ -49,12 +49,12 @@ class _ShoppingModeScreenState extends State<ShoppingModeScreen> {
           children: [
             Icon(Icons.check_circle_outline_rounded, size: 100, color: Theme.of(context).primaryColor),
             const SizedBox(height: 24),
-            Text('All Done!', style: Theme.of(context).textTheme.headline1),
+            Text('All Done!', style: Theme.of(context).textTheme.displayLarge),
             const SizedBox(height: 8),
             Text(
               'You have checked off all items for ${widget.storeName}.',
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyText2,
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
             const SizedBox(height: 48),
             PrimaryButton(

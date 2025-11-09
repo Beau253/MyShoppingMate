@@ -63,7 +63,7 @@ class PrimaryButton extends StatelessWidget {
             : Text(
                 text,
                 // Use the button text style from the current theme.
-                style: Theme.of(context).textTheme.button,
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(color: AppColors.white),
               ),
       ),
     );
