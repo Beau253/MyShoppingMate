@@ -37,7 +37,7 @@ class AppTheme {
           borderRadius: BorderRadius.circular(8.0),
           borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
         ),
-      ), colorScheme: ColorScheme(background: AppColors.lightSurface),
+      ), colorScheme: ColorScheme(surface: AppColors.lightSurface),
     );
   }
 
@@ -73,7 +73,7 @@ class AppTheme {
           borderRadius: BorderRadius.circular(8.0),
           borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
         ),
-      ), colorScheme: ColorScheme(background: AppColors.darkSurface),
+      ), colorScheme: ColorScheme(surface: AppColors.darkSurface),
     );
   }
 }

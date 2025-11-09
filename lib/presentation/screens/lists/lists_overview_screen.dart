@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_shopping_mate/bloc/shopping_list/shopping_list_bloc.dart';
-import 'package:my_shopping_mate/data/models/shopping_list_model.dart';
 import 'package:my_shopping_mate/presentation/screens/lists/list_detail_screen.dart';
 import 'package:my_shopping_mate/presentation/widgets/molecules/shopping_list_card.dart';
 

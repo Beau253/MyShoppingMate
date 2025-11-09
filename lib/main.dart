@@ -132,7 +132,7 @@ class AppTheme {
         brightness: brightness,
         primary: accentColor,
         surface: surfaceColor
-      ).copyWith(background: surfaceColor),
+      ).copyWith(surface: surfaceColor),
     );
   }
 }
