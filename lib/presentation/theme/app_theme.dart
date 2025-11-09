@@ -10,15 +10,14 @@ class AppTheme {
       brightness: Brightness.light,
       primaryColor: AppColors.primary,
       scaffoldBackgroundColor: AppColors.lightBackground,
-      backgroundColor: AppColors.lightSurface,
       
       textTheme: GoogleFonts.interTextTheme(ThemeData.light().textTheme).copyWith(
-        headline1: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: AppColors.lightOnBackground),
-        headline2: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: AppColors.lightOnBackground),
-        bodyText1: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: AppColors.lightOnBackground),
-        bodyText2: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: AppColors.lightOnSurface),
-        button: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.white),
-        caption: const TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: AppColors.lightOnSurface),
+        displayLarge: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: AppColors.lightOnBackground),
+        displayMedium: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: AppColors.lightOnBackground),
+        bodyLarge: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: AppColors.lightOnBackground),
+        bodyMedium: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: AppColors.lightOnSurface),
+        labelLarge: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.white),
+        bodySmall: const TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: AppColors.lightOnSurface),
       ),
 
       cardTheme: CardTheme(
@@ -38,7 +37,7 @@ class AppTheme {
           borderRadius: BorderRadius.circular(8.0),
           borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
         ),
-      ),
+      ), colorScheme: ColorScheme(background: AppColors.lightSurface),
     );
   }
 
@@ -47,15 +46,14 @@ class AppTheme {
       brightness: Brightness.dark,
       primaryColor: AppColors.primary,
       scaffoldBackgroundColor: AppColors.darkBackground,
-      backgroundColor: AppColors.darkSurface,
 
       textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme).copyWith(
-        headline1: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: AppColors.darkOnBackground),
-        headline2: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: AppColors.darkOnBackground),
-        bodyText1: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: AppColors.darkOnBackground),
-        bodyText2: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: AppColors.darkOnSurface),
-        button: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.white),
-        caption: const TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: AppColors.darkOnSurface),
+        displayLarge: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: AppColors.darkOnBackground),
+        displayMedium: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: AppColors.darkOnBackground),
+        bodyLarge: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: AppColors.darkOnBackground),
+        bodyMedium: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: AppColors.darkOnSurface),
+        labelLarge: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.white),
+        bodySmall: const TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: AppColors.darkOnSurface),
       ),
 
       cardTheme: CardTheme(
@@ -75,7 +73,7 @@ class AppTheme {
           borderRadius: BorderRadius.circular(8.0),
           borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
         ),
-      ),
+      ), colorScheme: ColorScheme(background: AppColors.darkSurface),
     );
   }
 }

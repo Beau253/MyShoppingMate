@@ -123,13 +123,13 @@ class ListsOverviewView extends StatelessWidget {
           const SizedBox(height: 24),
           Text(
             'No Shopping Lists Yet',
-            style: Theme.of(context).textTheme.headline2,
+            style: Theme.of(context).textTheme.displayMedium,
           ),
           const SizedBox(height: 8),
           Text(
             'Tap the "+" button to create your first list.',
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyText2,
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
         ],
       ),

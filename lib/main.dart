@@ -100,23 +100,14 @@ class AppTheme {
       brightness: brightness,
       primaryColor: accentColor,
       scaffoldBackgroundColor: backgroundColor,
-      backgroundColor: surfaceColor,
-      
-      // Use colorScheme for better component compatibility
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: accentColor,
-        brightness: brightness,
-        primary: accentColor,
-        surface: surfaceColor
-      ),
       
       textTheme: GoogleFonts.interTextTheme(ThemeData(brightness: brightness).textTheme).copyWith(
-        headline1: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: onBackgroundColor),
-        headline2: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: onBackgroundColor),
-        bodyText1: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: onBackgroundColor),
-        bodyText2: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: onSurfaceColor),
-        button: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.white),
-        caption: TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: onSurfaceColor),
+        displayLarge: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: onBackgroundColor),
+        displayMedium: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: onBackgroundColor),
+        bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: onBackgroundColor),
+        bodyMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: onSurfaceColor),
+        labelLarge: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.white),
+        bodySmall: TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: onSurfaceColor),
       ),
 
       cardTheme: CardTheme(
@@ -136,7 +127,12 @@ class AppTheme {
           borderRadius: BorderRadius.circular(8.0),
           borderSide: BorderSide(color: accentColor, width: 1.5),
         ),
-      ),
+      ), colorScheme: ColorScheme.fromSeed(
+        seedColor: accentColor,
+        brightness: brightness,
+        primary: accentColor,
+        surface: surfaceColor
+      ).copyWith(background: surfaceColor),
     );
   }
 }

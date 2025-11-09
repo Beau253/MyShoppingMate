@@ -60,7 +60,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: IconThemeData(
-          color: Theme.of(context).textTheme.bodyText1?.color,
+          color: Theme.of(context).textTheme.bodyLarge?.color,
         ),
       ),
       body: SingleChildScrollView(
@@ -77,13 +77,13 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 Text(
                   'Reset Password',
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headline1,
+                  style: Theme.of(context).textTheme.displayLarge,
                 ),
                 const SizedBox(height: 16),
                 Text(
                   "Enter the email associated with your account and we'll send an email with instructions to reset your password.",
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyText2,
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 48),
 

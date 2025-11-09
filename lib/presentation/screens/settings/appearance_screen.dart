@@ -99,7 +99,7 @@ class _SectionHeader extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 8.0),
       child: Text(
         title.toUpperCase(),
-        style: Theme.of(context).textTheme.caption?.copyWith(
+        style: Theme.of(context).textTheme.bodySmall?.copyWith(
           fontWeight: FontWeight.bold,
           color: Theme.of(context).primaryColor,
         ),

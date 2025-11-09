@@ -33,19 +33,19 @@ class ListItemWidget extends StatelessWidget {
         ),
         title: Text(
           productName,
-          style: textTheme.bodyText1?.copyWith(
+          style: textTheme.bodyLarge?.copyWith(
             decoration: isChecked ? TextDecoration.lineThrough : TextDecoration.none,
           ),
         ),
         subtitle: Text(
           'Quantity: $quantity',
-          style: textTheme.caption?.copyWith(
+          style: textTheme.bodySmall?.copyWith(
             decoration: isChecked ? TextDecoration.lineThrough : TextDecoration.none,
           ),
         ),
         trailing: Text(
           currencyFormatter.format(price * quantity),
-          style: textTheme.bodyText1?.copyWith(
+          style: textTheme.bodyLarge?.copyWith(
             fontWeight: FontWeight.bold,
             decoration: isChecked ? TextDecoration.lineThrough : TextDecoration.none,
           ),

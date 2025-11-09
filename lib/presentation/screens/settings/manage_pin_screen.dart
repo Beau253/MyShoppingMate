@@ -80,7 +80,7 @@ class _ManagePINScreenState extends State<ManagePINScreen> {
         Center(
           child: Text(
             'PIN Lock is Active',
-            style: Theme.of(context).textTheme.headline2,
+            style: Theme.of(context).textTheme.displayMedium,
           ),
         ),
         const SizedBox(height: 32),
@@ -114,14 +114,14 @@ class _ManagePINScreenState extends State<ManagePINScreen> {
           Center(
             child: Text(
               'PIN Lock is Inactive',
-              style: Theme.of(context).textTheme.headline2,
+              style: Theme.of(context).textTheme.displayMedium,
             ),
           ),
           const SizedBox(height: 16),
           Text(
             'For enhanced security, we recommend enabling a PIN lock. You will be asked for this PIN each time you open the app.',
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyText2,
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
           const SizedBox(height: 32),
           PrimaryButton(

@@ -26,9 +26,9 @@ class SettingsTile extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: ListTile(
           leading: Icon(leadingIcon, color: theme.primaryColor),
-          title: Text(title, style: theme.textTheme.bodyText1),
+          title: Text(title, style: theme.textTheme.bodyLarge),
           subtitle: subtitle != null
-              ? Text(subtitle!, style: theme.textTheme.caption)
+              ? Text(subtitle!, style: theme.textTheme.bodySmall)
               : null,
           trailing: trailing,
         ),

@@ -79,13 +79,13 @@ class MyStoresView extends StatelessWidget {
           const SizedBox(height: 24),
           Text(
             'No Preferred Stores',
-            style: Theme.of(context).textTheme.headline2,
+            style: Theme.of(context).textTheme.displayMedium,
           ),
           const SizedBox(height: 8),
           Text(
             'Tap the "+" button to add stores.\nYour search results will be prioritized for these locations.',
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyText2,
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
         ],
       ),
@@ -109,7 +109,7 @@ class _StoreTile extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6.0),
       child: ListTile(
         leading: const Icon(Icons.store, size: 40), // Placeholder for store logo
-        title: Text(storeName, style: Theme.of(context).textTheme.bodyText1),
+        title: Text(storeName, style: Theme.of(context).textTheme.bodyLarge),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [

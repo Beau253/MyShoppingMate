@@ -33,7 +33,7 @@ class PinEntryScreen extends StatelessWidget {
               Text(
                 'This is a placeholder for the PIN entry UI.',
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyText1,
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
               const SizedBox(height: 20),
               // In a real implementation, this would be a custom UI with

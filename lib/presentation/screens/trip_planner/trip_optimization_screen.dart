@@ -102,8 +102,8 @@ class _TripOptimizationViewState extends State<TripOptimizationView> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(storeName, style: Theme.of(context).textTheme.headline1),
-              Text(currencyFormatter.format(storeTotal), style: Theme.of(context).textTheme.headline2),
+              Text(storeName, style: Theme.of(context).textTheme.displayLarge),
+              Text(currencyFormatter.format(storeTotal), style: Theme.of(context).textTheme.displayMedium),
             ],
           ),
           const Divider(height: 24),
@@ -167,8 +167,8 @@ class _TripOptimizationViewState extends State<TripOptimizationView> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Grand Total', style: Theme.of(context).textTheme.headline2),
-                Text(currencyFormatter.format(grandTotal), style: Theme.of(context).textTheme.headline2?.copyWith(color: Theme.of(context).primaryColor)),
+                Text('Grand Total', style: Theme.of(context).textTheme.displayMedium),
+                Text(currencyFormatter.format(grandTotal), style: Theme.of(context).textTheme.displayMedium?.copyWith(color: Theme.of(context).primaryColor)),
               ],
             ),
             const SizedBox(height: 16),

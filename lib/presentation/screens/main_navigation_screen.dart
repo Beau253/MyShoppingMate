@@ -71,7 +71,7 @@ class _MainNavigationViewState extends State<MainNavigationView> {
         onTap: _onTabTapped,
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Theme.of(context).primaryColor,
-        unselectedItemColor: Theme.of(context).textTheme.caption?.color,
+        unselectedItemColor: Theme.of(context).textTheme.bodySmall?.color,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.dashboard_outlined),

@@ -128,7 +128,7 @@ class ListDetailView extends StatelessWidget {
             Text(listName),
             Text(
               'Total: ${currencyFormatter.format(totalCost)}',
-              style: Theme.of(context).textTheme.caption?.copyWith(color: Colors.white70),
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.white70),
             )
           ],
         ),

@@ -37,7 +37,7 @@ class ShoppingListCard extends StatelessWidget {
               // List Name
               Text(
                 listName,
-                style: Theme.of(context).textTheme.headline2,
+                style: Theme.of(context).textTheme.displayMedium,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -48,11 +48,11 @@ class ShoppingListCard extends StatelessWidget {
                 children: [
                   Text(
                     '$itemCount Items',
-                    style: Theme.of(context).textTheme.bodyText2,
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   Text(
                     currencyFormatter.format(totalCost),
-                    style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: Theme.of(context).primaryColor,
                     ),
