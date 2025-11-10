@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_shopping_mate/bloc/auth/auth_bloc.dart';
-import 'package:my_shopping_mate/bloc/auth/auth_event.dart';
-import 'package:my_shopping_mate/bloc/auth/auth_state.dart';
+import 'package:my_shopping_mate/bloc/auth_bloc.dart';
+import 'package:my_shopping_mate/bloc/auth_event.dart';
+import 'package:my_shopping_mate/bloc/auth_state.dart';
 import 'package:my_shopping_mate/presentation/screens/auth/login_screen.dart';
 import 'package:my_shopping_mate/presentation/screens/settings/appearance_screen.dart';
 import 'package:my_shopping_mate/presentation/screens/settings/change_password_screen.dart';
