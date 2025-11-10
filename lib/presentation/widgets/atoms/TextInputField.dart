@@ -1,4 +1,4 @@
-import 'package.flutter/material.dart';
+import 'package:flutter/material.dart';
 
 /// A reusable and styled text input field for the application.
 ///

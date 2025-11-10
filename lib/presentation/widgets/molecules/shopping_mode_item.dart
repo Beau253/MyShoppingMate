@@ -1,4 +1,4 @@
-import 'package.flutter/material.dart';
+import 'package:flutter/material.dart';
 
 class ShoppingModeItem extends StatelessWidget {
   final String productName;

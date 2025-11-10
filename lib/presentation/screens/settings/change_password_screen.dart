@@ -1,4 +1,4 @@
-import 'package.flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package.my_shopping_mate/presentation/widgets/atoms/PrimaryButton.dart';
 import 'package.my_shopping_mate/presentation/widgets/atoms/TextInputField.dart';
 

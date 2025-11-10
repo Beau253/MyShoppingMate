@@ -1,4 +1,4 @@
-import 'package.flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package.intl/intl.dart';
 
 // A simple data class to hold alternative price info.

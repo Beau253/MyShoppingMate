@@ -33,6 +33,7 @@ dependencies:
   
   # Utility
   intl: ^0.17.0
+  stream_transform: ^2.1.0 # Added for debouncing streams
   uuid: ^3.0.7 # Added for fake repositories
 
 

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_shopping_mate/bloc/search/search_bloc.dart';
+import 'package:my_shopping_mate/bloc/search/search_event.dart';
+import 'package:my_shopping_mate/bloc/search/search_state.dart';
 import 'package:my_shopping_mate/data/models/product_model.dart';
 import 'package:my_shopping_mate/data/repositories/product_repository.dart';
 import 'package:my_shopping_mate/presentation/widgets/molecules/product_card.dart';
