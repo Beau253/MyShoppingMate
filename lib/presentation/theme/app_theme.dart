@@ -30,7 +30,7 @@ class AppTheme {
         bodySmall: TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: onSurfaceColor),
       ),
 
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         elevation: isLight ? 2 : 4,
         color: surfaceColor,
         shape: RoundedRectangleBorder(

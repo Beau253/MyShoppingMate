@@ -45,7 +45,7 @@ class PrimaryButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.0),
         ),
         // Define the disabled state's appearance.
-        disabledBackgroundColor: Theme.of(context).primaryColor.withOpacity(0.5),
+        disabledBackgroundColor: Theme.of(context).primaryColor.withAlpha(128),
       ),
       child: AnimatedSwitcher(
         duration: const Duration(milliseconds: 200),

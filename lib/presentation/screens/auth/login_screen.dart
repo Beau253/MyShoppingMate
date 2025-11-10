@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_shopping_mate/presentation/widgets/atoms/text_input_field.dart';
-import 'package:my_shopping_mate/presentation/widgets/atoms/PrimaryButton.dart';
+import 'package:my_shopping_mate/presentation/widgets/atoms/primary_button.dart';
 import 'package:my_shopping_mate/presentation/screens/main_navigation_screen.dart';
 
 class LoginScreen extends StatefulWidget {

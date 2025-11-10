@@ -5,7 +5,7 @@ import 'package:my_shopping_mate/bloc/profile/profile_event.dart';
 import 'package:my_shopping_mate/bloc/profile/profile_state.dart';
 import 'package:my_shopping_mate/data/repositories/user_repository.dart';
 import 'package:my_shopping_mate/presentation/widgets/atoms/PrimaryButton.dart';
-import 'package:my_shopping_mate/presentation/widgets/atoms/TextInputField.dart';
+import 'package:my_shopping_mate/presentation/widgets/atoms/text_input_field.dart';
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({super.key});

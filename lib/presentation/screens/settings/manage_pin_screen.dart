@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_shopping_mate/presentation/screens/settings/pin_entry_screen.dart';
-import 'package:my_shopping_mate/presentation/widgets/atoms/PrimaryButton.dart';
+import 'package:my_shopping_mate/presentation/widgets/atoms/primary_button.dart';
 import 'package:my_shopping_mate/presentation/widgets/molecules/settings_tile.dart';
 
 class ManagePINScreen extends StatefulWidget {
