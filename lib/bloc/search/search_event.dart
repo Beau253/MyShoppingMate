@@ -10,3 +10,4 @@ final String query;
 const SearchQueryChanged(this.query);
 @override
 List<Object> get props => [query];
+}

@@ -1,5 +1,5 @@
 import 'package.flutter/material.dart';
-import 'package.my_shopping_mate/presentation/widgets/atoms/TextInputField.dart';
+import 'package:my_shopping_mate/presentation/widgets/atoms/text_input_field.dart';
 import 'package.my_shopping_mate/presentation/widgets/atoms/PrimaryButton.dart';
 
 class RegistrationScreen extends StatefulWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_shopping_mate/presentation/widgets/atoms/TextInputField.dart';
+import 'package:my_shopping_mate/presentation/widgets/atoms/text_input_field.dart';
 import 'package:my_shopping_mate/presentation/widgets/atoms/PrimaryButton.dart';
 import 'package:my_shopping_mate/presentation/screens/main_navigation_screen.dart';
 
