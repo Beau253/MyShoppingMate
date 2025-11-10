@@ -6,6 +6,7 @@ plugins {
 }
 
 android {
+    buildDir = file("$projectDir/../build_output_no_spaces")
     namespace = "com.example.my_shopping_mate"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
