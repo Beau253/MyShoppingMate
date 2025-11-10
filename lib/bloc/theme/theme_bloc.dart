@@ -74,8 +74,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   }
 
   Future<void> _onThemeLoaded(ThemeLoaded event, Emitter<ThemeState> emit) async {
-    final themeMode = await _themeRepository.loadThemeMode();
-    final accentColor = await _themeRepository.loadAccentColor();
+    final (themeMode, accentColor) = await _themeRepository.loadTheme();
     emit(state.copyWith(themeMode: themeMode, accentColor: accentColor));
   }
 

@@ -59,26 +59,26 @@ class ProductCard extends StatelessWidget {
                 children: [
                   Text(
                     productName,
-                    style: theme.textTheme.bodyText1?.copyWith(fontWeight: FontWeight.bold),
+                    style: theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 4),
-                  Text(brand, style: theme.textTheme.caption),
+                  Text(brand, style: theme.textTheme.bodySmall),
                   const SizedBox(height: 8),
                   Text.rich(
                     TextSpan(
                       children: [
                         TextSpan(
                           text: '${currencyFormatter.format(bestPrice)} ',
-                          style: theme.textTheme.bodyText1?.copyWith(
+                          style: theme.textTheme.bodyLarge?.copyWith(
                             fontWeight: FontWeight.bold,
                             color: theme.primaryColor,
                           ),
                         ),
                         TextSpan(
                           text: 'at $storeName',
-                          style: theme.textTheme.caption,
+                          style: theme.textTheme.bodySmall,
                         ),
                       ],
                     ),

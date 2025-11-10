@@ -6,7 +6,7 @@ import 'package:my_shopping_mate/data/repositories/user_repository.dart';
 import 'package:my_shopping_mate/data/repositories/shopping_list_repository.dart';
 import 'package:my_shopping_mate/presentation/screens/dashboard/dashboard_screen.dart';
 import 'package:my_shopping_mate/presentation/screens/lists/lists_overview_screen.dart';
-import 'package:my_shopping_mate/presentation/screens/recipes/recipes_screen.dart';
+// import 'package:my_shopping_mate/presentation/screens/recipes/recipes_screen.dart';
 import 'package:my_shopping_mate/presentation/screens/search/search_screen.dart';
 import 'package:my_shopping_mate/presentation/screens/settings/settings_screen.dart';
 
@@ -60,7 +60,7 @@ class _MainNavigationViewState extends State<MainNavigationView> {
       ),
       const ListsOverviewScreen(),
       const SearchScreen(),
-      const RecipesScreen(), // Placeholder
+      // const RecipesScreen(), // Placeholder
       const SettingsScreen(),
     ];
     
@@ -88,11 +88,11 @@ class _MainNavigationViewState extends State<MainNavigationView> {
             activeIcon: Icon(Icons.search),
             label: 'Search',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.restaurant_menu_outlined),
-            activeIcon: Icon(Icons.restaurant_menu),
-            label: 'Recipes',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.restaurant_menu_outlined),
+          //   activeIcon: Icon(Icons.restaurant_menu),
+          //   label: 'Recipes',
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings_outlined),
             activeIcon: Icon(Icons.settings),

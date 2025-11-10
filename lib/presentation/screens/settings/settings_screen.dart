@@ -47,7 +47,7 @@ class SettingsScreen extends StatelessWidget {
     return BlocListener<AuthBloc, AuthenticationState>(
       listener: (context, state) {
         // When the state becomes unauthenticated, navigate to the login screen.
-        if (state.status == AuthenticationStatus.unauthenticated) {
+        if (state.status == AuthStatus.unauthenticated) {
           // This method of navigation removes all previous screens from the stack,
           // preventing the user from pressing the back button to return to a
           // screen that requires authentication.
@@ -193,7 +193,7 @@ class _SectionHeader extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(16.0, 24.0, 16.0, 8.0),
       child: Text(
         title.toUpperCase(),
-        style: Theme.of(context).textTheme.caption?.copyWith(
+        style: Theme.of(context).textTheme.bodySmall?.copyWith(
           fontWeight: FontWeight.bold,
           color: Theme.of(context).primaryColor,
         ),

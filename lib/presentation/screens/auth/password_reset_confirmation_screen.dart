@@ -1,5 +1,5 @@
-import 'package.flutter/material.dart';
-import 'package:my_shopping_mate/presentation/widgets/atoms/PrimaryButton.dart';
+import 'package:flutter/material.dart';
+import 'package:my_shopping_mate/presentation/widgets/atoms/primary_button.dart';
 
 class PasswordResetConfirmationScreen extends StatelessWidget {
   final String email;
@@ -42,21 +42,21 @@ class PasswordResetConfirmationScreen extends StatelessWidget {
             Text(
               'Check Your Email',
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headline1,
+              style: Theme.of(context).textTheme.displayLarge,
             ),
             const SizedBox(height: 16),
 
             // --- Descriptive Text ---
             Text.rich(
               TextSpan(
-                style: Theme.of(context).textTheme.bodyText2,
+                style: Theme.of(context).textTheme.bodyMedium,
                 children: [
                   const TextSpan(text: "We've sent password recovery instructions to "),
                   TextSpan(
                     text: email,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Theme.of(context).textTheme.bodyText1?.color,
+                      color: Theme.of(context).textTheme.bodyLarge?.color,
                     ),
                   ),
                   const TextSpan(text: ". Please check your inbox and spam folder."),

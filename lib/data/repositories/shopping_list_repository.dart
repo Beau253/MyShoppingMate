@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_final_fields
+
 import 'package:my_shopping_mate/data/models/list_item_model.dart';
 import 'package:my_shopping_mate/data/models/shopping_list_model.dart';
 import 'package:uuid/uuid.dart';

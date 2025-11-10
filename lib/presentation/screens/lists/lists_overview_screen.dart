@@ -99,11 +99,13 @@ class ListsOverviewView extends StatelessWidget {
                         listId: list.id, // PASS THE ID
                         listName: list.name,
                       ),
-                    );
-                  },
-                );
+                    ),
+                  );
+                },
+              );
             },
           );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _showCreateListDialog(context),

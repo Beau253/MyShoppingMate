@@ -1,4 +1,4 @@
-import 'package.flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:my_shopping_mate/presentation/widgets/atoms/text_input_field.dart';
 import 'package:my_shopping_mate/presentation/widgets/atoms/primary_button.dart';
 
@@ -63,7 +63,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: IconThemeData(
-          color: Theme.of(context).textTheme.bodyText1?.color,
+          color: Theme.of(context).textTheme.bodyLarge?.color,
         ),
       ),
       body: SingleChildScrollView(
@@ -78,13 +78,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 Text(
                   'Create Account',
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headline1,
+                  style: Theme.of(context).textTheme.displayLarge,
                 ),
                 const SizedBox(height: 8),
                 Text(
                   'Start your journey to smarter shopping',
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyText2,
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 40),
 
@@ -172,7 +172,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   children: [
                     Text(
                       "Already have an account?",
-                      style: Theme.of(context).textTheme.bodyText2,
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     TextButton(
                       onPressed: () {

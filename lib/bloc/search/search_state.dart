@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:my_shopping_mate/data/repositories/product_repository.dart';
+import 'package:my_shopping_mate/data/models/product_model.dart';
 
 enum SearchStatus { initial, loading, success, failure }
 

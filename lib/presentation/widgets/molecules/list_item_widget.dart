@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package.intl/intl.dart';
+import 'package:intl/intl.dart';
 
 class ListItemWidget extends StatelessWidget {
   final String productName;

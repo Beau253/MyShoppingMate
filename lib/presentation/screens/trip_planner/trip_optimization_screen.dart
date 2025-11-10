@@ -5,7 +5,7 @@ import 'package:my_shopping_mate/bloc/trip_plan/trip_plan_bloc.dart';
 import 'package:my_shopping_mate/data/models/trip_plan_model.dart';
 import 'package:my_shopping_mate/data/repositories/trip_plan_repository.dart';
 import 'package:my_shopping_mate/presentation/screens/trip_planner/shopping_mode_screen.dart';
-import 'package:my_shopping_mate/presentation/widgets/atoms/PrimaryButton.dart';
+import 'package:my_shopping_mate/presentation/widgets/atoms/primary_button.dart';
 import 'package:my_shopping_mate/presentation/widgets/molecules/trip_item_card.dart';
 
 class TripOptimizationScreen extends StatelessWidget {
@@ -127,7 +127,7 @@ class _TripOptimizationViewState extends State<TripOptimizationView> {
                   context.read<TripPlanBloc>().add(TripItemMoved(tripItem));
                 },
               );
-            }).toList(),
+            }),
         ],
       ),
     );
@@ -145,7 +145,7 @@ class _TripOptimizationViewState extends State<TripOptimizationView> {
             shape: BoxShape.circle,
             color: _currentPageIndex == index
                 ? Theme.of(context).primaryColor
-                : Colors.grey.withOpacity(0.5),
+                : Colors.grey.withAlpha((255 * 0.5).round()),
           ),
         );
       }),

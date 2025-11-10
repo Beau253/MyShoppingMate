@@ -26,7 +26,7 @@ class ProfileNameChanged extends ProfileEvent {
 // --- BLoC State ---
 // State is the output of the BLoC, which the UI reacts to.
 
-enum ProfileStatus { initial, loading, success, failure, saving }
+enum ProfileStatus { initial, loading, success, failure, saving, saveSuccess }
 
 class ProfileState extends Equatable {
   final ProfileStatus status;
@@ -86,7 +86,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       // After saving, emit a new success state with the updated user data.
       // We can optimistically update the user object before re-fetching.
       final updatedUser = state.user!.copyWith(name: event.name);
-      emit(state.copyWith(status: ProfileStatus.success, user: updatedUser,));
+      emit(state.copyWith(status: ProfileStatus.saveSuccess, user: updatedUser,));
     } catch (_) {
       // If saving fails, revert to the previous successful state.
       // The user object is already correct from the previous success state.

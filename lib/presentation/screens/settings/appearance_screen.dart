@@ -30,36 +30,30 @@ class AppearanceScreen extends StatelessWidget {
             children: [
               // --- THEME MODE SECTION ---
               const _SectionHeader('Theme'),
-              RadioListTile<ThemeMode>(
-                title: const Text('System Default'),
-                subtitle: const Text('Automatically adapt to device theme'),
-                value: ThemeMode.system,
+              RadioGroup<ThemeMode>(
                 groupValue: state.themeMode,
                 onChanged: (value) {
                   if (value != null) {
                     context.read<ThemeBloc>().add(ThemeModeChanged(value));
                   }
                 },
-              ),
-              RadioListTile<ThemeMode>(
-                title: const Text('Light'),
-                value: ThemeMode.light,
-                groupValue: state.themeMode,
-                onChanged: (value) {
-                   if (value != null) {
-                    context.read<ThemeBloc>().add(ThemeModeChanged(value));
-                  }
-                },
-              ),
-              RadioListTile<ThemeMode>(
-                title: const Text('Dark'),
-                value: ThemeMode.dark,
-                groupValue: state.themeMode,
-                onChanged: (value) {
-                   if (value != null) {
-                    context.read<ThemeBloc>().add(ThemeModeChanged(value));
-                  }
-                },
+                child: const Column(
+                  children: [
+                    RadioListTile<ThemeMode>(
+                      title: Text('System Default'),
+                      subtitle: Text('Automatically adapt to device theme'),
+                      value: ThemeMode.system,
+                    ),
+                    RadioListTile<ThemeMode>(
+                      title: Text('Light'),
+                      value: ThemeMode.light,
+                    ),
+                    RadioListTile<ThemeMode>(
+                      title: Text('Dark'),
+                      value: ThemeMode.dark,
+                    ),
+                  ],
+                ),
               ),
 
               // --- ACCENT COLOR SECTION ---
@@ -72,7 +66,7 @@ class AppearanceScreen extends StatelessWidget {
                   children: _accentColors.map((color) {
                     return _ColorCircle(
                       color: color,
-                      isSelected: state.accentColor.value == color.value,
+                      isSelected: state.accentColor.toARGB32() == color.toARGB32(),
                       onTap: () {
                         context.read<ThemeBloc>().add(AccentColorChanged(color));
                       },

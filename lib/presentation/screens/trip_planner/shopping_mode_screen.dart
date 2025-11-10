@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_shopping_mate/data/models/list_item_model.dart';
-import 'package:my_shopping_mate/presentation/widgets/atoms/PrimaryButton.dart';
+import 'package:my_shopping_mate/presentation/widgets/atoms/primary_button.dart';
 import 'package:my_shopping_mate/presentation/widgets/molecules/shopping_mode_item.dart';
 
 class ShoppingModeScreen extends StatefulWidget {
@@ -78,7 +78,7 @@ class _ShoppingModeScreenState extends State<ShoppingModeScreen> {
           preferredSize: const Size.fromHeight(4.0),
           child: LinearProgressIndicator(
             value: _progress,
-            backgroundColor: Theme.of(context).primaryColor.withOpacity(0.2),
+            backgroundColor: Theme.of(context).primaryColor.withValues(alpha: 0.2),
           ),
         ),
       ),

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_shopping_mate/bloc/profile/profile_bloc.dart';
-import 'package:my_shopping_mate/bloc/profile/profile_event.dart';
-import 'package:my_shopping_mate/bloc/profile/profile_state.dart';
 import 'package:my_shopping_mate/data/repositories/user_repository.dart';
-import 'package:my_shopping_mate/presentation/widgets/atoms/PrimaryButton.dart';
+import 'package:my_shopping_mate/presentation/widgets/atoms/primary_button.dart';
 import 'package:my_shopping_mate/presentation/widgets/atoms/text_input_field.dart';
 
 class EditProfileScreen extends StatelessWidget {
@@ -58,12 +56,14 @@ class _EditProfileViewState extends State<EditProfileView> {
       // like SnackBars) and build the UI.
       body: BlocConsumer<ProfileBloc, ProfileState>(
         listener: (context, state) {
-          // Listen for the successful save state to show a SnackBar.
-          if (state.status == ProfileStatus.success) {
-            // Populate controllers when data loads or updates successfully.
+          // Populate controllers when data loads or updates successfully.
+          if (state.status == ProfileStatus.success || state.status == ProfileStatus.saveSuccess) {
             _nameController.text = state.user?.name ?? '';
             _emailController.text = state.user?.email ?? '';
-            
+          }
+
+          // Listen for the successful save state to show a SnackBar.
+          if (state.status == ProfileStatus.saveSuccess) {
             ScaffoldMessenger.of(context)
               ..hideCurrentSnackBar()
               ..showSnackBar(
@@ -75,6 +75,7 @@ class _EditProfileViewState extends State<EditProfileView> {
           }
         },
         builder: (context, state) {
+          // The UI should be shown for both success and saveSuccess states, but the loading indicator handles this.
           if (state.status == ProfileStatus.loading || state.status == ProfileStatus.initial) {
             return const Center(child: CircularProgressIndicator());
           }

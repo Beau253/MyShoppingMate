@@ -22,12 +22,12 @@ class AppTheme {
       scaffoldBackgroundColor: backgroundColor,
       
       textTheme: GoogleFonts.interTextTheme(ThemeData(brightness: brightness).textTheme).copyWith(
-        displayLarge: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: onBackgroundColor),
-        displayMedium: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: onBackgroundColor),
-        bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: onBackgroundColor),
-        bodyMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: onSurfaceColor),
+        displayLarge: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: onBackgroundColor), // headline1
+        displayMedium: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: onBackgroundColor), // headline2
+        bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: onBackgroundColor), // bodyText1
+        bodyMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: onSurfaceColor), // bodyText2
         labelLarge: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.white),
-        bodySmall: TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: onSurfaceColor),
+        bodySmall: TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: onSurfaceColor), // caption
       ),
 
       cardTheme: CardThemeData(

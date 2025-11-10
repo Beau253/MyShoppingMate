@@ -31,15 +31,15 @@ class ShoppingModeItem extends StatelessWidget {
       ),
       title: Text(
         productName,
-        style: textTheme.bodyText1?.copyWith(
+        style: textTheme.bodyLarge?.copyWith(
           fontSize: 18, // Slightly larger font for readability
           decoration: isChecked ? TextDecoration.lineThrough : TextDecoration.none,
-          color: isChecked ? textTheme.caption?.color : textTheme.bodyText1?.color,
+          color: isChecked ? textTheme.bodySmall?.color : textTheme.bodyLarge?.color,
         ),
       ),
       trailing: Text(
         'x$quantity',
-        style: textTheme.headline2?.copyWith(
+        style: textTheme.displaySmall?.copyWith(
           color: isChecked ? theme.disabledColor : theme.primaryColor,
         ),
       ),

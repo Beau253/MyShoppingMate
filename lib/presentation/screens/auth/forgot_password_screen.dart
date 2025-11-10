@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_shopping_mate/presentation/screens/auth/password_reset_confirmation_screen.dart'; 
 import 'package:my_shopping_mate/presentation/widgets/atoms/text_input_field.dart';
-import 'package:my_shopping_mate/presentation/widgets/atoms/PrimaryButton.dart';
+import 'package:my_shopping_mate/presentation/widgets/atoms/primary_button.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});

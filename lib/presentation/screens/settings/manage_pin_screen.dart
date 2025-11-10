@@ -11,7 +11,7 @@ class ManagePINScreen extends StatefulWidget {
 }
 
 class _ManagePINScreenState extends State<ManagePINScreen> {
-  bool _isPinEnabled = true;
+  final bool _isPinEnabled = true;
 
   void _enablePin() {
     // Navigate to the setup screen. The logic inside that screen

@@ -64,8 +64,8 @@ class MyStoresView extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _showAddStoreDialog(context),
-        child: const Icon(Icons.add),
         tooltip: 'Add a new store',
+        child: const Icon(Icons.add),
       ),
     );
   }

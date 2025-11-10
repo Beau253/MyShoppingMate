@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package.intl/intl.dart';
+import 'package:intl/intl.dart';
 
 // A simple data class to hold alternative price info.
 class AlternativePrice {
@@ -64,12 +64,12 @@ class TripItemCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(productName, style: textTheme.bodyText1?.copyWith(fontWeight: FontWeight.bold)),
-                      Text('Quantity: $quantity', style: textTheme.caption),
+                      Text(productName, style: textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold)),
+                      Text('Quantity: $quantity', style: textTheme.bodySmall),
                     ],
                   ),
                 ),
-                Text(currencyFormatter.format(currentPrice * quantity), style: textTheme.bodyText1),
+                Text(currencyFormatter.format(currentPrice * quantity), style: textTheme.bodyLarge),
               ],
             ),
             if (alternative != null) ...[
