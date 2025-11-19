@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:my_shopping_mate/data/services/api_service.dart';
 
 enum AuthStatus { unknown, authenticated, unauthenticated }
@@ -6,12 +7,21 @@ enum AuthStatus { unknown, authenticated, unauthenticated }
 class AuthRepository {
   final _controller = StreamController<AuthStatus>();
   final ApiService _apiService;
+  final FlutterSecureStorage _storage;
 
-  AuthRepository({ApiService? apiService})
-      : _apiService = apiService ?? ApiService();
+  AuthRepository({ApiService? apiService, FlutterSecureStorage? storage})
+      : _apiService = apiService ?? ApiService(),
+        _storage = storage ?? const FlutterSecureStorage();
 
   Stream<AuthStatus> get status async* {
-    yield AuthStatus.unauthenticated;
+    // Check for persisted token on startup
+    final token = await _storage.read(key: 'auth_token');
+    if (token != null) {
+      _apiService.setToken(token);
+      yield AuthStatus.authenticated;
+    } else {
+      yield AuthStatus.unauthenticated;
+    }
     yield* _controller.stream;
   }
 
@@ -26,7 +36,9 @@ class AuthRepository {
       });
 
       if (response != null && response['token'] != null) {
-        _apiService.setToken(response['token']);
+        final token = response['token'];
+        await _storage.write(key: 'auth_token', value: token);
+        _apiService.setToken(token);
         _controller.add(AuthStatus.authenticated);
       } else {
         throw Exception('Login failed: No token received');
@@ -39,6 +51,7 @@ class AuthRepository {
   }
 
   Future<void> logOut() async {
+    await _storage.delete(key: 'auth_token');
     _apiService.clearToken();
     _controller.add(AuthStatus.unauthenticated);
   }
