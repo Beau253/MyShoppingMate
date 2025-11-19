@@ -1,12 +1,16 @@
 import 'dart:async';
+import 'package:my_shopping_mate/data/services/api_service.dart';
 
 enum AuthStatus { unknown, authenticated, unauthenticated }
 
 class AuthRepository {
   final _controller = StreamController<AuthStatus>();
+  final ApiService _apiService;
+
+  AuthRepository({ApiService? apiService})
+      : _apiService = apiService ?? ApiService();
 
   Stream<AuthStatus> get status async* {
-    await Future<void>.delayed(const Duration(seconds: 1));
     yield AuthStatus.unauthenticated;
     yield* _controller.stream;
   }
@@ -15,19 +19,28 @@ class AuthRepository {
     required String email,
     required String password,
   }) async {
-    // In a real app, you'd make a network request here.
-    await Future.delayed(
-      const Duration(milliseconds: 300),
-      () => _controller.add(AuthStatus.authenticated),
-    );
+    try {
+      final response = await _apiService.post('/auth/login', body: {
+        'email': email,
+        'password': password,
+      });
+
+      if (response != null && response['token'] != null) {
+        _apiService.setToken(response['token']);
+        _controller.add(AuthStatus.authenticated);
+      } else {
+        throw Exception('Login failed: No token received');
+      }
+    } catch (e) {
+      print('Login error: $e');
+      _controller.add(AuthStatus.unauthenticated);
+      rethrow;
+    }
   }
 
   Future<void> logOut() async {
-    // In a real app, you'd clear tokens and notify the server.
-    await Future.delayed(
-      const Duration(milliseconds: 300),
-      () => _controller.add(AuthStatus.unauthenticated),
-    );
+    _apiService.clearToken();
+    _controller.add(AuthStatus.unauthenticated);
   }
 
   void dispose() => _controller.close();

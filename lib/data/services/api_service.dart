@@ -14,13 +14,30 @@ class ApiException implements Exception {
 
 class ApiService {
   final http.Client _client;
+  String? _token;
 
   ApiService({http.Client? client}) : _client = client ?? http.Client();
+
+  void setToken(String token) {
+    _token = token;
+  }
+
+  void clearToken() {
+    _token = null;
+  }
+
+  Map<String, String> get _headers {
+    final headers = {'Content-Type': 'application/json'};
+    if (_token != null) {
+      headers['Authorization'] = 'Bearer $_token';
+    }
+    return headers;
+  }
 
   Future<dynamic> get(String endpoint) async {
     final url = Uri.parse('${AppConfig.apiBaseUrl}$endpoint');
     try {
-      final response = await _client.get(url);
+      final response = await _client.get(url, headers: _headers);
       return _handleResponse(response);
     } catch (e) {
       throw ApiException('Failed to connect to the server: $e');
@@ -32,7 +49,7 @@ class ApiService {
     try {
       final response = await _client.post(
         url,
-        headers: {'Content-Type': 'application/json'},
+        headers: _headers,
         body: body != null ? jsonEncode(body) : null,
       );
       return _handleResponse(response);
