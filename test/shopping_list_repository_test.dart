@@ -1,9 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:my_shopping_mate/data/models/list_item_model.dart';
 import 'package:my_shopping_mate/data/repositories/shopping_list_repository.dart';
-import 'package:my_shopping_mate/data/services/api_service.dart';
 import 'package:mockito/mockito.dart';
-import 'package:mockito/annotations.dart';
 
 // Reuse the mock from product_repository_test
 import 'product_repository_test.mocks.dart';
@@ -44,7 +41,7 @@ void main() {
       const productName = 'Bread';
       const quantity = 2;
       const price = 2.50;
-      
+
       final mockResponse = {
         'id': '2',
         'productName': productName,
@@ -66,7 +63,8 @@ void main() {
         price: price,
       );
 
-      verify(mockApiService.post('/lists/$listId/items', body: anyNamed('body')))
+      verify(mockApiService.post('/lists/$listId/items',
+              body: anyNamed('body')))
           .called(1);
       expect(result.productName, productName);
     });
