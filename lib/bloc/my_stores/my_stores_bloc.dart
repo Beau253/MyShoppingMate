@@ -13,6 +13,15 @@ abstract class MyStoresEvent extends Equatable {
 /// Event to load the user's stores.
 class MyStoresLoaded extends MyStoresEvent {}
 
+/// Event to add a new store.
+class MyStoreAdded extends MyStoresEvent {
+  final String name;
+  final String chain;
+  const MyStoreAdded(this.name, this.chain);
+  @override
+  List<Object> get props => [name, chain];
+}
+
 /// Event to remove a store from the user's list.
 class MyStoreRemoved extends MyStoresEvent {
   final Store store;
@@ -64,6 +73,7 @@ class MyStoresBloc extends Bloc<MyStoresEvent, MyStoresState> {
       : _storeRepository = storeRepository,
         super(const MyStoresState()) {
     on<MyStoresLoaded>(_onMyStoresLoaded);
+    on<MyStoreAdded>(_onMyStoreAdded);
     on<MyStoreRemoved>(_onMyStoreRemoved);
     on<MyStoresReordered>(_onMyStoresReordered);
   }
@@ -72,6 +82,19 @@ class MyStoresBloc extends Bloc<MyStoresEvent, MyStoresState> {
       MyStoresLoaded event, Emitter<MyStoresState> emit) async {
     emit(state.copyWith(status: MyStoresStatus.loading));
     try {
+      final stores = await _storeRepository.getMyStores();
+      emit(state.copyWith(status: MyStoresStatus.success, stores: stores));
+    } catch (_) {
+      emit(state.copyWith(status: MyStoresStatus.failure));
+    }
+  }
+
+  Future<void> _onMyStoreAdded(
+      MyStoreAdded event, Emitter<MyStoresState> emit) async {
+    emit(state.copyWith(status: MyStoresStatus.loading));
+    try {
+      await _storeRepository.addStore(event.name, event.chain);
+      // Reload stores after adding
       final stores = await _storeRepository.getMyStores();
       emit(state.copyWith(status: MyStoresStatus.success, stores: stores));
     } catch (_) {
@@ -97,7 +120,7 @@ class MyStoresBloc extends Bloc<MyStoresEvent, MyStoresState> {
       MyStoresReordered event, Emitter<MyStoresState> emit) async {
     final int oldIndex = event.oldIndex;
     int newIndex = event.newIndex;
-    
+
     // This logic is specific to ReorderableListView
     if (newIndex > oldIndex) {
       newIndex -= 1;
@@ -106,9 +129,9 @@ class MyStoresBloc extends Bloc<MyStoresEvent, MyStoresState> {
     final updatedList = List<Store>.from(state.stores);
     final store = updatedList.removeAt(oldIndex);
     updatedList.insert(newIndex, store);
-    
+
     emit(state.copyWith(stores: updatedList));
-    
+
     try {
       await _storeRepository.reorderStores(updatedList);
     } catch (_) {

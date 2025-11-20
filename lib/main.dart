@@ -13,20 +13,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    // Provide all repositories at the top level.
-    return MultiRepositoryProvider(
-      providers: [
-        RepositoryProvider(create: (context) => AuthRepository()),
-        RepositoryProvider(create: (context) => ThemeRepository()),
-      ],
-      // Provide all BLoCs that have a global scope.
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => AuthBloc(
               authRepository: context.read<AuthRepository>(),
             ),
           ),

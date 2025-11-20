@@ -57,7 +57,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
       }
     } catch (e) {
       setState(() {
-        _errorMessage = e.toString().replaceAll('Exception: ', '');
+        // Parse the error message to show user-friendly text
+        String errorMsg = e.toString();
+        if (errorMsg.contains('409')) {
+          _errorMessage =
+              'This email is already registered. Please login instead.';
+        } else if (errorMsg.contains('400')) {
+          _errorMessage = 'Invalid email or password format.';
+        } else if (errorMsg.contains('Failed to connect')) {
+          _errorMessage =
+              'Cannot connect to server. Please check your internet connection.';
+        } else {
+          _errorMessage = errorMsg
+              .replaceAll('Exception: ', '')
+              .replaceAll('ApiException: ', '');
+        }
         _isLoading = false;
       });
     }
