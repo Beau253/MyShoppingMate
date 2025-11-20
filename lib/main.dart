@@ -22,7 +22,8 @@ class MyApp extends StatelessWidget {
       providers: [
         RepositoryProvider(create: (context) => AuthRepository()),
         RepositoryProvider(create: (context) => ThemeRepository()),
-        RepositoryProvider(create: (context) => ApiStoreRepository()),
+        RepositoryProvider<StoreRepository>(
+            create: (context) => ApiStoreRepository()),
       ],
       // Provide all BLoCs that have a global scope.
       child: MultiBlocProvider(
