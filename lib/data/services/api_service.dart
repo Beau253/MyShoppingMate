@@ -58,6 +58,20 @@ class ApiService {
     }
   }
 
+  Future<dynamic> put(String endpoint, {Map<String, dynamic>? body}) async {
+    final url = Uri.parse('${AppConfig.apiBaseUrl}$endpoint');
+    try {
+      final response = await _client.put(
+        url,
+        headers: _headers,
+        body: body != null ? jsonEncode(body) : null,
+      );
+      return _handleResponse(response);
+    } catch (e) {
+      throw ApiException('Failed to connect to the server: $e');
+    }
+  }
+
   dynamic _handleResponse(http.Response response) {
     if (response.statusCode >= 200 && response.statusCode < 300) {
       if (response.body.isEmpty) return null;

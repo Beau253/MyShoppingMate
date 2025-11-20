@@ -21,7 +21,7 @@ class MainNavigationScreen extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => ShoppingListBloc(
-            shoppingListRepository: FakeShoppingListRepository(),
+            shoppingListRepository: ApiShoppingListRepository(),
           )..add(ShoppingListsLoaded()), // Load lists when the user logs in.
         ),
         BlocProvider(
@@ -92,7 +92,7 @@ class _MainNavigationViewState extends State<MainNavigationView> {
           //   icon: Icon(Icons.restaurant_menu_outlined),
           //   activeIcon: Icon(Icons.restaurant_menu),
           //   label: 'Recipes',
-          // ),
+          //   ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings_outlined),
             activeIcon: Icon(Icons.settings),

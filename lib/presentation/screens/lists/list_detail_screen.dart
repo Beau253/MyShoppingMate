@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:my_shopping_mate/bloc/list_detail/list_detail_bloc.dart';
-import 'package:my_shopping_mate/data/repositories/shopping_list_repository.dart'; // Assuming FakeShoppingListRepository is here
+import 'package:my_shopping_mate/data/repositories/shopping_list_repository.dart';
 import 'package:my_shopping_mate/presentation/screens/trip_planner/trip_optimization_screen.dart';
 import 'package:my_shopping_mate/presentation/widgets/atoms/primary_button.dart';
 import 'package:my_shopping_mate/presentation/widgets/molecules/list_item_widget.dart';
@@ -22,7 +22,7 @@ class ListDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ListDetailBloc(
-        shoppingListRepository: FakeShoppingListRepository(),
+        shoppingListRepository: ApiShoppingListRepository(),
       )..add(ListDetailLoaded(listId)),
       child: ListDetailView(listName: listName),
     );

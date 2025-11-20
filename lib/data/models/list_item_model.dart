@@ -25,6 +25,16 @@ class ListItem extends Equatable {
     );
   }
 
+  factory ListItem.fromJson(Map<String, dynamic> json) {
+    return ListItem(
+      id: json['id']?.toString() ?? '',
+      productName: json['productName'] as String? ?? json['product_name'] as String? ?? '',
+      quantity: json['quantity'] as int? ?? 1,
+      price: (json['price'] as num?)?.toDouble() ?? 0.0,
+      isChecked: json['isChecked'] as bool? ?? json['is_checked'] as bool? ?? false,
+    );
+  }
+
   @override
   List<Object> get props => [id, productName, quantity, price, isChecked];
 }
