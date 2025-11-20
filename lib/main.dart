@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_shopping_mate/bloc/auth/auth_bloc.dart';
 import 'package:my_shopping_mate/bloc/theme/theme_bloc.dart';
 import 'package:my_shopping_mate/data/repositories/auth_repository.dart';
+import 'package:my_shopping_mate/data/repositories/store_repository.dart';
 import 'package:my_shopping_mate/data/repositories/theme_repository.dart';
 import 'package:my_shopping_mate/presentation/screens/auth/login_screen.dart';
 import 'package:my_shopping_mate/presentation/theme/app_theme.dart';
@@ -13,6 +14,21 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // Provide all repositories at the top level.
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider(create: (context) => AuthRepository()),
+        RepositoryProvider(create: (context) => ThemeRepository()),
+        RepositoryProvider(create: (context) => ApiStoreRepository()),
+      ],
+      // Provide all BLoCs that have a global scope.
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => AuthBloc(
               authRepository: context.read<AuthRepository>(),
             ),
           ),
