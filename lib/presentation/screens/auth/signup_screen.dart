@@ -4,30 +4,33 @@ import 'package:my_shopping_mate/data/repositories/auth_repository.dart';
 import 'package:my_shopping_mate/presentation/widgets/atoms/text_input_field.dart';
 import 'package:my_shopping_mate/presentation/widgets/atoms/primary_button.dart';
 import 'package:my_shopping_mate/presentation/screens/main_navigation_screen.dart';
-import 'package:my_shopping_mate/presentation/screens/auth/signup_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
   bool _isLoading = false;
   String? _errorMessage;
 
   @override
   void dispose() {
+    _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
-  Future<void> _login() async {
+  Future<void> _signUp() async {
     if (!_formKey.currentState!.validate()) {
       return;
     }
@@ -39,9 +42,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
     try {
       final authRepository = context.read<AuthRepository>();
-      await authRepository.logIn(
+      await authRepository.signUp(
         email: _emailController.text.trim(),
         password: _passwordController.text,
+        name: _nameController.text.trim(),
       );
 
       if (mounted) {
@@ -62,6 +66,9 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Create Account'),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -70,19 +77,19 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const SizedBox(height: 80),
+                const SizedBox(height: 20),
                 Text(
-                  'Welcome Back',
+                  'Join MyShoppingMate',
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.displayLarge,
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Sign in to your account',
+                  'Create your account to get started',
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
-                const SizedBox(height: 48),
+                const SizedBox(height: 32),
 
                 // Error message
                 if (_errorMessage != null)
@@ -99,6 +106,21 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: TextStyle(color: Colors.red.shade900),
                     ),
                   ),
+
+                // Name field
+                TextInputField(
+                  controller: _nameController,
+                  labelText: 'Full Name',
+                  hintText: 'John Doe',
+                  prefixIcon: Icons.person_outline,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your name';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 20),
 
                 // Email field
                 TextInputField(
@@ -127,7 +149,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   prefixIcon: Icons.lock_outline,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter your password';
+                      return 'Please enter a password';
                     }
                     if (value.length < 8) {
                       return 'Password must be at least 8 characters';
@@ -135,45 +157,47 @@ class _LoginScreenState extends State<LoginScreen> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 20),
 
-                // Forgot password link
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () {
-                      // TODO: Implement forgot password
-                    },
-                    child: const Text('Forgot Password?'),
-                  ),
-                ),
-                const SizedBox(height: 24),
-
-                // Login button
-                PrimaryButton(
-                  text: 'Login',
-                  onPressed: _login,
-                  isLoading: _isLoading,
+                // Confirm password field
+                TextInputField(
+                  controller: _confirmPasswordController,
+                  labelText: 'Confirm Password',
+                  isPassword: true,
+                  prefixIcon: Icons.lock_outline,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please confirm your password';
+                    }
+                    if (value != _passwordController.text) {
+                      return 'Passwords do not match';
+                    }
+                    return null;
+                  },
                 ),
                 const SizedBox(height: 32),
 
-                // Sign up link
+                // Sign up button
+                PrimaryButton(
+                  text: 'Create Account',
+                  onPressed: _signUp,
+                  isLoading: _isLoading,
+                ),
+                const SizedBox(height: 16),
+
+                // Login link
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Don't have an account?",
+                      'Already have an account?',
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const SignUpScreen(),
-                          ),
-                        );
+                        Navigator.of(context).pop();
                       },
-                      child: const Text('Sign Up'),
+                      child: const Text('Login'),
                     ),
                   ],
                 ),

@@ -50,6 +50,33 @@ class AuthRepository {
     }
   }
 
+  Future<void> signUp({
+    required String email,
+    required String password,
+    required String name,
+  }) async {
+    try {
+      final response = await _apiService.post('/auth/register', body: {
+        'email': email,
+        'password': password,
+        'name': name,
+      });
+
+      if (response != null && response['token'] != null) {
+        final token = response['token'];
+        await _storage.write(key: 'auth_token', value: token);
+        _apiService.setToken(token);
+        _controller.add(AuthStatus.authenticated);
+      } else {
+        throw Exception('Sign up failed: No token received');
+      }
+    } catch (e) {
+      print('Sign up error: $e');
+      _controller.add(AuthStatus.unauthenticated);
+      rethrow;
+    }
+  }
+
   Future<void> logOut() async {
     await _storage.delete(key: 'auth_token');
     _apiService.clearToken();
