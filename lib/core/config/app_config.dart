@@ -1,6 +1,7 @@
 class AppConfig {
-  // Default to the remote backend IP and port provided by the user.
-  // Default to localhost for local Docker testing.
-  // Previous: static const String apiBaseUrl = 'http://10.10.20.100:8000';
-  static const String apiBaseUrl = 'http://localhost:8000';
+  // For Android Emulator, use 10.0.2.2 to access the host's localhost.
+  // For iOS Simulator, use localhost.
+  // For Physical Device, use your computer's LAN IP (e.g., 192.168.1.x).
+  // For Web/Desktop, use localhost.
+  static const String apiBaseUrl = 'http://10.0.2.2:8000';
 }
