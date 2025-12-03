@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:my_shopping_mate/data/models/store_model.dart';
 import 'package:my_shopping_mate/data/services/api_service.dart';
 
@@ -24,7 +25,7 @@ class ApiStoreRepository implements StoreRepository {
       }
       return [];
     } catch (e) {
-      print('Error fetching stores: $e');
+      debugPrint('Error fetching stores: $e');
       throw Exception('Failed to fetch stores');
     }
   }
@@ -37,7 +38,7 @@ class ApiStoreRepository implements StoreRepository {
         'chain': chain,
       });
     } catch (e) {
-      print('Error adding store: $e');
+      debugPrint('Error adding store: $e');
       throw Exception('Failed to add store');
     }
   }

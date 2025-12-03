@@ -5,6 +5,7 @@ import 'package:my_shopping_mate/presentation/widgets/atoms/text_input_field.dar
 import 'package:my_shopping_mate/presentation/widgets/atoms/primary_button.dart';
 import 'package:my_shopping_mate/presentation/screens/main_navigation_screen.dart';
 import 'package:my_shopping_mate/presentation/screens/auth/signup_screen.dart';
+import 'package:my_shopping_mate/presentation/screens/auth/forgot_password_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -155,7 +156,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: () {
-                      // TODO: Implement forgot password
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const ForgotPasswordScreen(),
+                        ),
+                      );
                     },
                     child: const Text('Forgot Password?'),
                   ),

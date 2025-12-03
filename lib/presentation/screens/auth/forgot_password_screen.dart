@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_shopping_mate/presentation/screens/auth/password_reset_confirmation_screen.dart'; 
-import 'package:my_shopping_mate/presentation/widgets/atoms/text_input_field.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_shopping_mate/data/repositories/auth_repository.dart';
+import 'package:my_shopping_mate/presentation/screens/auth/reset_password_screen.dart';
 import 'package:my_shopping_mate/presentation/widgets/atoms/primary_button.dart';
+import 'package:my_shopping_mate/presentation/widgets/atoms/text_input_field.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
@@ -14,6 +16,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   bool _isLoading = false;
+  String? _errorMessage;
 
   @override
   void dispose() {
@@ -21,35 +24,39 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     super.dispose();
   }
 
-  /// Handles the password reset request logic.
-  Future<void> _sendResetLink() async {
+  Future<void> _submit() async {
     if (!_formKey.currentState!.validate()) {
       return;
     }
 
     setState(() {
       _isLoading = true;
+      _errorMessage = null;
     });
 
-    // --- Simulate a network call to the backend to trigger the email ---
-    await Future.delayed(const Duration(seconds: 2));
-    // -----------------------------------------------------------------
+    try {
+      await context
+          .read<AuthRepository>()
+          .forgotPassword(_emailController.text.trim());
 
-    if (mounted) {
-      // **CORRECTION:** Reset the loading state *before* navigating.
-      // This ensures the button is in the correct state if the user navigates back.
-      setState(() {
-        _isLoading = false;
-      });
-
-      // Navigate to the new confirmation screen, passing the email.
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => PasswordResetConfirmationScreen(
-            email: _emailController.text,
+      if (mounted) {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) =>
+                ResetPasswordScreen(email: _emailController.text.trim()),
           ),
-        ),
-      );
+        );
+      }
+    } catch (e) {
+      setState(() {
+        _errorMessage = e.toString().replaceAll('Exception: ', '');
+      });
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     }
   }
 
@@ -57,64 +64,63 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // Provides a standard back button.
+        title: const Text('Forgot Password'),
         backgroundColor: Colors.transparent,
         elevation: 0,
         iconTheme: IconThemeData(
           color: Theme.of(context).textTheme.bodyLarge?.color,
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const SizedBox(height: 40),
-
-                // --- Screen Title & Description ---
-                Text(
-                  'Reset Password',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.displayLarge,
+      body: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                'Enter your email address to reset your password.',
+                style: Theme.of(context).textTheme.bodyLarge,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 32),
+              if (_errorMessage != null)
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  margin: const EdgeInsets.only(bottom: 16),
+                  decoration: BoxDecoration(
+                    color: Colors.red.shade50,
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: Colors.red.shade200),
+                  ),
+                  child: Text(
+                    _errorMessage!,
+                    style: TextStyle(color: Colors.red.shade900),
+                  ),
                 ),
-                const SizedBox(height: 16),
-                Text(
-                  "Enter the email associated with your account and we'll send an email with instructions to reset your password.",
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                const SizedBox(height: 48),
-
-                // --- Email Input Field ---
-                TextInputField(
-                  controller: _emailController,
-                  labelText: 'Email',
-                  hintText: 'you@example.com',
-                  keyboardType: TextInputType.emailAddress,
-                  prefixIcon: Icons.email_outlined,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your email';
-                    }
-                    if (!value.contains('@') || !value.contains('.')) {
-                      return 'Please enter a valid email address';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 32),
-
-                // --- Send Link Button ---
-                PrimaryButton(
-                  text: 'Send Instructions',
-                  onPressed: _sendResetLink,
-                  isLoading: _isLoading,
-                ),
-              ],
-            ),
+              TextInputField(
+                controller: _emailController,
+                labelText: 'Email',
+                hintText: 'you@example.com',
+                keyboardType: TextInputType.emailAddress,
+                prefixIcon: Icons.email_outlined,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email';
+                  }
+                  if (!value.contains('@')) {
+                    return 'Please enter a valid email';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 24),
+              PrimaryButton(
+                text: 'Send Reset Link',
+                onPressed: _submit,
+                isLoading: _isLoading,
+              ),
+            ],
           ),
         ),
       ),

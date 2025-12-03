@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:flutter/foundation.dart';
 import 'package:my_shopping_mate/data/models/product_model.dart';
 import 'package:my_shopping_mate/data/services/api_service.dart';
 
@@ -18,7 +19,7 @@ class ProductRepository {
     try {
       // The backend endpoint is /products/search?q=query
       final response = await _apiService.get('/products/search?q=$query');
-      
+
       if (response is List) {
         return response.map((json) => Product.fromJson(json)).toList();
       } else {
@@ -27,7 +28,7 @@ class ProductRepository {
     } catch (e) {
       // In a real app, we should log this error or rethrow it.
       // For now, we return an empty list to avoid crashing the UI.
-      print('Error searching products: $e');
+      debugPrint('Error searching products: $e');
       return [];
     }
   }

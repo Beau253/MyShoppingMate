@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:my_shopping_mate/data/services/api_service.dart';
 
@@ -44,7 +45,7 @@ class AuthRepository {
         throw Exception('Login failed: No token received');
       }
     } catch (e) {
-      print('Login error: $e');
+      debugPrint('Login error: $e');
       _controller.add(AuthStatus.unauthenticated);
       rethrow;
     }
@@ -71,7 +72,7 @@ class AuthRepository {
         throw Exception('Sign up failed: No token received');
       }
     } catch (e) {
-      print('Sign up error: $e');
+      debugPrint('Sign up error: $e');
       _controller.add(AuthStatus.unauthenticated);
       rethrow;
     }
@@ -81,6 +82,24 @@ class AuthRepository {
     await _storage.delete(key: 'auth_token');
     _apiService.clearToken();
     _controller.add(AuthStatus.unauthenticated);
+  }
+
+  Future<void> forgotPassword(String email) async {
+    await _apiService.post('/auth/forgot-password', body: {
+      'email': email,
+    });
+  }
+
+  Future<void> resetPassword({
+    required String email,
+    required String token,
+    required String newPassword,
+  }) async {
+    await _apiService.post('/auth/reset-password', body: {
+      'email': email,
+      'token': token,
+      'newPassword': newPassword,
+    });
   }
 
   void dispose() => _controller.close();
