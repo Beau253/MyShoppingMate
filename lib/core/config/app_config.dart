@@ -3,5 +3,6 @@ class AppConfig {
   // For iOS Simulator, use localhost.
   // For Physical Device, use your computer's LAN IP (e.g., 192.168.1.x).
   // For Web/Desktop, use localhost.
-  static const String apiBaseUrl = 'http://10.0.2.2:8000';
+  // LXC Server IP provided by user:
+  static const String apiBaseUrl = 'http://10.10.20.100:8000';
 }
